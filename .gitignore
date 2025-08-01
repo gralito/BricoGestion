@@ -1,5 +1,5 @@
 data/
-graphics/
+graphics/__pycache__/
 images/
 main.py
 screens/
