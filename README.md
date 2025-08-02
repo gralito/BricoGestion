@@ -1,2 +1,3 @@
-BricoGestion
-logiciel
+## BricoGestion
+### personnal project
+### handle your homestocks
