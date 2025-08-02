@@ -3,4 +3,4 @@ images/
 main.py
 screens/createscreen.py
 */__pycache__/
-utils/
+utils/const.py
