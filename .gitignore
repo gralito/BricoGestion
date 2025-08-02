@@ -1,6 +1,4 @@
 data/
 images/
-main.py
-screens/createscreen.py
 */__pycache__/
 utils/const.py
