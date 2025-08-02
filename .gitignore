@@ -1,6 +1,6 @@
 data/
-graphics/__pycache__/
 images/
 main.py
-screens/
+screens/createscreen.py
+*/__pycache__/
 utils/
