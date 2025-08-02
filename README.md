@@ -1,3 +1,3 @@
 ## BricoGestion
-# personnal project
-# handle your homestocks
+### personnal project
+### handle your homestocks
