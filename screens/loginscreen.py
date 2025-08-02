@@ -1,14 +1,12 @@
 # coding:utf-8
-# classe LoginScreen
-#
+# LoginScreen
+
 # imports
 import tkinter as tk
 import customtkinter as ctk
 from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.dbfunc import get_login_info
-#from screens.bricogestion import BricoGestion
-
 
 class LoginScreen(ctk.CTkToplevel):
     def __init__(self):
@@ -31,7 +29,7 @@ class LoginScreen(ctk.CTkToplevel):
         lbl_pss = ctk.CTkLabel(login_frame, text='Password   >')
         ent_usr = ctk.CTkEntry(login_frame, textvariable=self.var_usr)
         ent_pss = ctk.CTkEntry(login_frame, textvariable=self.var_pss, show='*')
-        cbox_admin = ctk.CTkCheckBox(login_frame, text='Admin mode',
+        cbox_admin = ctk.CTkCheckBox(login_frame, text='Admin mode (-not yet available-)',
                                     variable=self.admin_check)
         btn_back = CustomButton(button_frame, 'Back', self.back_to_menu)
         btn_login = CustomButton(button_frame, 'Login', self.login)
