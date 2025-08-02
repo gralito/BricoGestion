@@ -1,14 +1,12 @@
 # coding:utf-8
-# classe LoginScreen
-#
+# LoginScreen
+
 # imports
 import tkinter as tk
 import customtkinter as ctk
 from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.dbfunc import get_login_info
-#from screens.bricogestion import BricoGestion
-
 
 class LoginScreen(ctk.CTkToplevel):
     def __init__(self):
@@ -17,37 +15,35 @@ class LoginScreen(ctk.CTkToplevel):
         self.title('Login')
         self.configure(fg_color=TITLE_GRAY)
 
-        # frame containing the login labels & textfields
-        login_frame = ctk.CTkFrame(self)
-        login_frame.configure(fg_color=BROWN_BG)
-        login_frame.pack(anchor='s', pady=20)
-        button_frame = ctk.CTkFrame(self, fg_color=TITLE_GRAY)
-        button_frame.pack(anchor='s', pady=20)
-
-        # widgets
+        # variables
         self.var_usr = tk.StringVar()
         self.var_pss = tk.StringVar()
         self.admin_check = tk.BooleanVar()
+
+        # frames
+        login_frame = ctk.CTkFrame(self, fg_color=BROWN_BG)
+        button_frame = ctk.CTkFrame(self, fg_color=TITLE_GRAY)
+        
+        # widgets
         lbl_usr = ctk.CTkLabel(login_frame, text='Username   >')
         lbl_pss = ctk.CTkLabel(login_frame, text='Password   >')
         ent_usr = ctk.CTkEntry(login_frame, textvariable=self.var_usr)
         ent_pss = ctk.CTkEntry(login_frame, textvariable=self.var_pss, show='*')
-        cbox_admin = ctk.CTkCheckBox(login_frame, text='Admin mode',
+        cbox_admin = ctk.CTkCheckBox(login_frame, text='Admin mode (-not yet available-)',
                                     variable=self.admin_check)
-        
-        # organized in a basic 2x2 grid
+        btn_back = CustomButton(button_frame, 'Back', self.back_to_menu)
+        btn_login = CustomButton(button_frame, 'Login', self.login)
+
+        # packing
         lbl_usr.grid(row=0, column=0, padx=10, pady=10)
         lbl_pss.grid(row=1, column=0, padx=10, pady=10)
         ent_usr.grid(row=0, column=1, padx=10, pady=10)
         ent_pss.grid(row=1, column=1, padx=10, pady=10)
         cbox_admin.grid(row=2, column=0, columnspan=2, pady=10)
-        
-        # button widgets
-        btn_back = CustomButton(button_frame, 'Back', self.back_to_menu)
-        btn_login = CustomButton(button_frame, 'Login', self.login)
         btn_login.grid(row=0, column=0, padx=10)
         btn_back.grid(row=0, column=1, padx=10)
-
+        login_frame.pack(anchor='s', pady=20)
+        button_frame.pack(anchor='s', pady=20)
 
         # key binding
         # ------------------A IMPLEMENTER------------------
