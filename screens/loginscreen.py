@@ -7,13 +7,11 @@ import customtkinter as ctk
 from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.dbfunc import get_login_info
+from graphics.cscreens import CustomScreen
 
-class LoginScreen(ctk.CTkToplevel):
+class LoginScreen(CustomScreen):
     def __init__(self):
-        super().__init__()
-        self.geometry(LOG_SIZE)
-        self.title('Login')
-        self.configure(fg_color=TITLE_GRAY)
+        super().__init__('Login')
 
         # variables
         self.var_usr = tk.StringVar()
@@ -43,20 +41,7 @@ class LoginScreen(ctk.CTkToplevel):
         btn_login.grid(row=0, column=0, padx=10)
         btn_back.grid(row=0, column=1, padx=10)
         login_frame.pack(anchor='s', pady=20)
-        button_frame.pack(anchor='s', pady=20)
-
-        # key binding
-        # ------------------A IMPLEMENTER------------------
-        # version ultérieure       
-
-
-    # function kills the login window and the main menu comes back
-    def back_to_menu(self):
-        self.master.deiconify()
-        self.destroy()
-        print(self.master.state)
-    # voir si peut être déclarée dans un fichier navfunc.py (tools)
-    # réutilisée dans createscreen
+        button_frame.pack(anchor='s', pady=20)      
 
 
     # functions to get the entered username

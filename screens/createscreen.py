@@ -12,14 +12,11 @@ from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.msgbox import warning_infos
 from utils.dbfunc import create_user, check_user_availability
+from graphics.cscreens import CustomScreen
 
-
-class CreateScreen(ctk.CTkToplevel):
+class CreateScreen(CustomScreen):
     def __init__(self):
-        super().__init__()
-        self.geometry(LOG_SIZE)
-        self.title('Register')
-        self.configure(fg_color=TITLE_GRAY)
+        super().__init__('Register')
 
         # variables
         self.var_ent_usr = tk.StringVar()
