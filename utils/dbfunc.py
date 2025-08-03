@@ -39,7 +39,7 @@ def firstTimeDB():
                     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     usr_username TEXT NOT NULL UNIQUE,
                     usr_password TEXT,
-                    usr_isadmin INTEGER DEFAULT 0
+                    usr_is_admin INTEGER DEFAULT 0
         )"""
         runQuery(create_table_users)
 
@@ -52,7 +52,7 @@ def firstTimeDB():
 # initializes the associated main stock 
 def create_user(username, password, is_admin = 0):
     query = """INSERT INTO users
-                (usr_username, usr_password, usr_isadmin)
+                (usr_username, usr_password, usr_is_admin)
                 VALUES (?, ?, ?)"""
     data = (username, password, is_admin)
     runQuery(query, data)
@@ -83,6 +83,16 @@ def get_login_info(username):
             WHERE usr_username = ?"""
     result = runQuery(query, data, True)
     return(result)
+
+
+def check_user_availability(username):
+    query = """SELECT usr_username FROM users WHERE usr_username = ?"""
+    data = (username,)
+    result = runQuery(query, data, True)
+    if result == []:
+        return True
+    else:
+        return False
 
 #-----------------A IMPLEMENTER------------------
 # a function to remove a user (admin required)

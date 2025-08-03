@@ -11,6 +11,7 @@ import customtkinter as ctk
 from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.msgbox import warning_infos
+from utils.dbfunc import create_user, check_user_availability
 
 
 class CreateScreen(ctk.CTkToplevel):
@@ -57,10 +58,15 @@ class CreateScreen(ctk.CTkToplevel):
         usr = self.get_usr()
         pwd = self.get_pwd()
         cpwd = self.get_cpwd()
+
         if usr == "" or pwd == "" or cpwd == "":
-            warning_infos(self)
+            warning_infos(self, "Informations missing !")
+        elif check_user_availability(usr):
+            create_user(usr, pwd, 0)
+            self.back_to_menu()
         else:
-            pass
+            message = f"le pseudo {usr} est déjà utilisé"
+            warning_infos(self, message)
 
     
     # functions to get the entered username
