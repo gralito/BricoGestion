@@ -8,6 +8,7 @@ from graphics.cmenubtn import CustomButton
 from utils.const import *
 import screens.loginscreen as lgs
 import screens.createscreen as crs
+from screens.controlboard import ControlBoard
 
 
 # main class, representing the application
@@ -18,7 +19,7 @@ class BricoGestion(ctk.CTk):
     #                       "off" -- no user logged
     #                       "logged" -- a regular user is logged
     #                       "admin" -- an admin user is logged
-    state = "off"
+    
 
     def __init__(self):
         ctk.set_appearance_mode("dark")
@@ -26,6 +27,11 @@ class BricoGestion(ctk.CTk):
         self.title("BricoGestion v1.0")
         self.geometry(APP_SIZE)
         self.configure(background=BROWN_BG)
+
+        # variables
+        self.state = "off"
+        self.current_user = None
+        self.login_screen = None
 
         # widgets
         lbl_title = ctk.CTkLabel(self, text='BricoGestion',
@@ -38,22 +44,31 @@ class BricoGestion(ctk.CTk):
         btn_quit = CustomButton(self, 'Quit', self.quit)
         btn_create = CustomButton(self, 'Register', self.register)
         
-        # placement
+        # packing
         btn_enter.pack(pady=10)
         btn_create.pack(pady=10)
         btn_quit.pack(pady=10)
 
+        if self.state == "logged":
+            self.launch_cboard()
     
     # callback of the login button
     def login(self):
         self.withdraw()
-        login_screen = lgs.LoginScreen()
+        self.login_screen = lgs.LoginScreen(self.launch_cboard)
+
 
     # callback of the register button
     def register(self):
         self.withdraw()
         register_screen = crs.CreateScreen()
 
+
+    # the control board
+    def launch_cboard(self, user):
+        self.login_screen.destroy()
+        self.withdraw()
+        self.control_board = ControlBoard(user)
 
 
     

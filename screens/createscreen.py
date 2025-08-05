@@ -32,8 +32,8 @@ class CreateScreen(CustomScreen):
         lbl_pwd = ctk.CTkLabel(ent_frame, text='Password >')
         lbl_cpwd = ctk.CTkLabel(ent_frame, text='Confirm >')
         ent_usr = ctk.CTkEntry(ent_frame, textvariable=self.var_ent_usr)
-        ent_pwd = ctk.CTkEntry(ent_frame, textvariable=self.var_ent_pwd)
-        ent_cpwd = ctk.CTkEntry(ent_frame, textvariable=self.var_ent_cpwd)       
+        ent_pwd = ctk.CTkEntry(ent_frame, textvariable=self.var_ent_pwd, show='*')
+        ent_cpwd = ctk.CTkEntry(ent_frame, textvariable=self.var_ent_cpwd, show='*')       
         btn_val = CustomButton(btn_frame, 'Validate', self.validate)
         btn_back = CustomButton(btn_frame, 'Back', self.back_to_menu)
 

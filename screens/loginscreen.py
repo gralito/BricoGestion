@@ -8,15 +8,18 @@ from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.dbfunc import get_login_info
 from graphics.cscreens import CustomScreen
+from screens.controlboard import ControlBoard
 
 class LoginScreen(CustomScreen):
-    def __init__(self):
+    def __init__(self, cboard):
         super().__init__('Login')
 
         # variables
         self.var_usr = tk.StringVar()
         self.var_pss = tk.StringVar()
         self.admin_check = tk.BooleanVar()
+        self.control_board = None
+        self.cboard = cboard
 
         # frames
         login_frame = ctk.CTkFrame(self, fg_color=BROWN_BG)
@@ -63,4 +66,4 @@ class LoginScreen(CustomScreen):
         if user == [(tested_username, tested_password)]:
             print("vous etes connecté")
             self.master.state = "logged"
-            self.back_to_menu()
+            self.cboard(tested_username)
