@@ -64,6 +64,6 @@ class LoginScreen(CustomScreen):
 
         user = get_login_info(tested_username)
         if user == [(tested_username, tested_password)]:
-            print("vous etes connecté")
+            print(f"{tested_username} connecté")
             self.master.state = "logged"
             self.cboard(tested_username)
