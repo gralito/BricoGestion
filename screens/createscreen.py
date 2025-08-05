@@ -87,4 +87,3 @@ class CreateScreen(CustomScreen):
     def back_to_menu(self):
         self.master.deiconify()
         self.destroy()
-        print(self.master.state)
