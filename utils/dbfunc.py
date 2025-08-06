@@ -68,8 +68,7 @@ def create_main_stock(stock_name):
                     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     name TEXT UNIQUE NOT NULL,
                     qty INTEGER DEFAULT 0,
-                    fam1 TEXT,
-                    fam2 TEXT,
+                    cat TEXT,
                     qty_min INTEGER,
                     low_stock INTEGER DEFAULT 0
                     )"""
@@ -90,6 +89,17 @@ def check_user_availability(username):
     data = (username,)
     result = runQuery(query, data, True)
     if result == []:
+        return True
+    else:
+        return False
+
+
+def check_is_admin(username):
+    query = """SELECT usr_is_admin FROM users WHERE usr_username = ?"""
+    data = (username, )
+    result = runQuery(query, data, True)
+    print(result)
+    if result == [(1,)]:
         return True
     else:
         return False
