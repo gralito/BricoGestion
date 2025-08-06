@@ -9,4 +9,3 @@ BACKGROUND = "#242424"
 
 # dimensions
 APP_SIZE = "400x600"
-LOG_SIZE = "400x300"

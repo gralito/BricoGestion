@@ -9,7 +9,7 @@ from utils.const import *
 class CustomScreen(ctk.CTkToplevel):
     def __init__(self, window_title):
         super().__init__()
-        self.geometry(LOG_SIZE)
+        self.geometry(APP_SIZE)
         self.title(window_title)
         self.configure(fg_color=TITLE_GRAY)
 

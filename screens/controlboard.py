@@ -14,7 +14,7 @@ class ControlBoard(CustomScreen):
         self.username = username
 
         # frames
-        self.button_frame = ctk.CTkFrame(self)
+        self.button_frame = ctk.CTkFrame(self, height=600)
         self.display_frame = ctk.CTkScrollableFrame(self)
 
         # widgets
