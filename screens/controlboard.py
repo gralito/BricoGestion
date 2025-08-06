@@ -11,9 +11,6 @@ class ControlBoard(CustomScreen):
         super().__init__(f'Control Board - {username}')
         self.grid_columnconfigure(1, weight=3)
         self.current_user = User(username)
-        
-        # variables
-        self.username = username
 
         # frames
         self.button_frame = ctk.CTkFrame(self, height=600)
