@@ -13,8 +13,8 @@ class ControlBoard(CustomScreen):
         self.current_user = User(username)
 
         # frames
-        self.button_frame = ctk.CTkFrame(self, height=600)
-        self.display_frame = ctk.CTkScrollableFrame(self)
+        self.button_frame = ctk.CTkFrame(self.content_frame, )
+        self.display_frame = ctk.CTkScrollableFrame(self.content_frame)
 
         # widgets
         self.lbl_menu = ctk.CTkLabel(self.button_frame, text='BOARD',
@@ -35,8 +35,8 @@ class ControlBoard(CustomScreen):
         self.btn_remove_item.pack(padx=10, pady=10)
         self.btn_logoff.pack(padx=10, pady=10)
 
-        self.button_frame.grid(row=0, column=0, sticky='nsw')
-        self.display_frame.grid(row=0, column=1, sticky='nsew')
+        self.button_frame.grid(row=1, column=0, sticky='nsw')
+        self.display_frame.grid(row=1, column=1, sticky='nsew')
 
 
     # FONCTIONS

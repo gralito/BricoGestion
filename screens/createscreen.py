@@ -11,12 +11,12 @@ import customtkinter as ctk
 from graphics.cmenubtn import CustomButton
 from utils.const import *
 from utils.msgbox import warning_infos
-from utils.dbfunc import create_user, check_user_availability
+from utils.dbfunc import create_user, check_user_availability, create_stock_list
 from graphics.cscreens import CustomScreen
 
 class CreateScreen(CustomScreen):
     def __init__(self):
-        super().__init__('Register')
+        super().__init__('Registration')
 
         # variables
         self.var_ent_usr = tk.StringVar()
@@ -24,8 +24,8 @@ class CreateScreen(CustomScreen):
         self.var_ent_cpwd = tk.StringVar()
         
         # frames
-        ent_frame = ctk.CTkFrame(self, fg_color=BROWN_BG)
-        btn_frame = ctk.CTkFrame(self, fg_color=TITLE_GRAY)
+        ent_frame = ctk.CTkFrame(self.content_frame, fg_color=BROWN_BG)
+        btn_frame = ctk.CTkFrame(self.content_frame, fg_color=TITLE_GRAY)
 
         # widgets 
         lbl_usr = ctk.CTkLabel(ent_frame, text='Username >')
@@ -46,8 +46,8 @@ class CreateScreen(CustomScreen):
         ent_cpwd.grid(row=2, column=1, padx=10, pady=10)
         btn_back.grid(row=0, column=0, padx=10)
         btn_val.grid(row=0, column=1, padx=10)
-        ent_frame.pack(anchor='s', pady=20)
-        btn_frame.pack(anchor='s', pady=20)
+        ent_frame.pack(anchor='n', pady=20)
+        btn_frame.pack(anchor='n', pady=20)
 
 
     # the validate button
@@ -60,6 +60,7 @@ class CreateScreen(CustomScreen):
             warning_infos(self, "Informations missing !")
         elif check_user_availability(usr):
             create_user(usr, pwd, 0)
+            create_stock_list(usr)
             self.back_to_menu()
         else:
             message = f"le pseudo {usr} est déjà utilisé"
@@ -82,8 +83,3 @@ class CreateScreen(CustomScreen):
     def get_cpwd(self, *args):
         cpassword = self.var_ent_cpwd.get()
         return cpassword
-
-    # back to menu button
-    def back_to_menu(self):
-        self.master.deiconify()
-        self.destroy()

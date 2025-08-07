@@ -45,25 +45,29 @@ def firstTimeDB():
 
         # creates the administrator (me)
         # will be removed in a later version
-        create_user("julien", "gralito", 1)
+        create_user("julien", "ju", 1)
+        create_stock_list("julien")
 
 
-# a function to create a user
-# initializes the associated main stock 
+
 def create_user(username, password, is_admin = 0):
     query = """INSERT INTO users
                 (usr_username, usr_password, usr_is_admin)
                 VALUES (?, ?, ?)"""
     data = (username, password, is_admin)
     runQuery(query, data)
-    stock_name = f"{username}_main_stock"
-    create_main_stock(stock_name)
 
 
+def create_stock_list(user):
+    list_name = f"{user}_stocklist"
+    query = f"""CREATE TABLE {list_name} (
+                id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+                stock_name TEXT UNIQUE NOT NULL
+                )"""
+    runQuery(query)
         
-# the fonction that creates a user's main stock
-# mainly called at user's creation
-def create_main_stock(stock_name):
+
+def create_stock(stock_name):
     query = f"""CREATE TABLE {stock_name} (
                     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     name TEXT UNIQUE NOT NULL,
@@ -74,8 +78,8 @@ def create_main_stock(stock_name):
                     )"""
     runQuery(query)
 
-# login check
-# a function that gets  login & password
+
+
 def get_login_info(username):
     data = (username,)
     query = """SELECT usr_username, usr_password FROM users

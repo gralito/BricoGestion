@@ -22,8 +22,8 @@ class LoginScreen(CustomScreen):
         self.cboard = cboard
 
         # frames
-        login_frame = ctk.CTkFrame(self, fg_color=BROWN_BG)
-        button_frame = ctk.CTkFrame(self, fg_color=TITLE_GRAY)
+        login_frame = ctk.CTkFrame(self.content_frame, fg_color=BROWN_BG)
+        button_frame = ctk.CTkFrame(self.content_frame, fg_color=TITLE_GRAY)
         
         # widgets
         lbl_usr = ctk.CTkLabel(login_frame, text='Username   >')
