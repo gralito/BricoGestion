@@ -7,7 +7,6 @@
 import sqlite3
 
 
-# main function of this file
 # a tool to send an Sqlite3 request
 def runQuery(sql, data=None, receive=False):
     try:
@@ -39,18 +38,24 @@ def firstTimeDB():
                     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                     usr_username TEXT NOT NULL UNIQUE,
                     usr_password TEXT,
-                    usr_is_admin INTEGER DEFAULT 0
-        )"""
+                    usr_is_admin INTEGER DEFAULT 0)"""
         runQuery(create_table_users)
+
+        # create the main catalog, containing every possible items
+        create_main_catalog = """CREATE TABLE main_catalog(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+                    item_name TEXT NOT NULL UNIQUE,
+                    item_category TEXT NOT NULL)"""
+        runQuery(create_main_catalog)
 
         # creates the administrator (me)
         # will be removed in a later version
-        create_user("julien", "ju", 1)
-        create_stock_list("julien")
+        # create_user("julien", "ju", 1)
+        # create_stock_list("julien")
 
 
 
-def create_user(username, password, is_admin = 0):
+def create_user(username, password, is_admin=0):
     query = """INSERT INTO users
                 (usr_username, usr_password, usr_is_admin)
                 VALUES (?, ?, ?)"""

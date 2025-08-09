@@ -5,38 +5,20 @@ from graphics.cmenubtn import CustomButton
 import tkinter as tk
 import customtkinter as ctk
 from utils.user import User
+from graphics.cmenuframe import CustomMenuFrame
 
 class ControlBoard(CustomScreen):
     def __init__(self, username):
         super().__init__(f'Control Board - {username}')
-        self.grid_columnconfigure(1, weight=3)
         self.current_user = User(username)
 
         # frames
-        self.button_frame = ctk.CTkFrame(self.content_frame, )
-        self.display_frame = ctk.CTkScrollableFrame(self.content_frame)
+        self.button_frame = CustomMenuFrame(self, self.logoff)
+        self.display_frame = ctk.CTkScrollableFrame(self, width=400)
 
-        # widgets
-        self.lbl_menu = ctk.CTkLabel(self.button_frame, text='BOARD',
-                                fg_color='transparent')
-        self.btn_show_item = CustomButton(self.button_frame, text='Open Stock',
-                                command=self.open_stock)
-        self.btn_add_item = CustomButton(self.button_frame, text='Create Stock',
-                                command=self.create_stock)
-        self.btn_remove_item = CustomButton(self.button_frame, text='Remove Stock',
-                                command=self.remove_stock)
-        self.btn_logoff = CustomButton(self.button_frame, text='Log Off',
-                                command=self.logoff)
-        
         # packing
-        self.lbl_menu.pack(padx=10, pady=10)
-        self.btn_show_item.pack(padx=10, pady=10)
-        self.btn_add_item.pack(padx=10, pady=10)
-        self.btn_remove_item.pack(padx=10, pady=10)
-        self.btn_logoff.pack(padx=10, pady=10)
-
-        self.button_frame.grid(row=1, column=0, sticky='nsw')
-        self.display_frame.grid(row=1, column=1, sticky='nsew')
+        self.button_frame.pack(side='left')
+        self.display_frame.pack(side='left', expand=True)
 
 
     # FONCTIONS
